@@ -1,6 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from mygeo.models import City
+from core.models import UserProfile
 from business.models import BusinessService
 
 SATISFACTION_CHOICES = (
@@ -39,6 +40,7 @@ REUSE_REASON_CHOICES = (
 )
 
 class Recommendation(models.Model):
+     ownby = models.ForeignKey(UserProfile)
      name = models.CharField(max_length=50)
      email = models.EmailField(max_length=50)
      phone = PhoneNumberField(blank = True)

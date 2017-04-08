@@ -2,7 +2,6 @@ from django.db import models
 from mygeo.models import City
 from phonenumber_field.modelfields import PhoneNumberField
 from experience.models import RenovationExperience, TenantExperience, FinancingExperience, TaxExperience
-from business.models import BusinessProfile
 
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
@@ -21,7 +20,7 @@ class UserProfile(models.Model):
     email = models.EmailField(max_length=50)
     phone = PhoneNumberField(blank = True)
     website = models.URLField(blank = True)
-    city = models.ManyToManyField(City)
+    city = models.ForeignKey(City)
 
     role = models.ForeignKey(Role)
     intro = models.TextField(max_length=200, default="")
@@ -32,8 +31,6 @@ class UserProfile(models.Model):
     financing_experience = models.ManyToManyField(FinancingExperience, blank = True)
     tax_experience = models.ManyToManyField(TaxExperience, blank = True)
     city_experience = models.ManyToManyField(City, blank = True, related_name="city_experience")
-
-    businessprofile = models.ManyToManyField(BusinessProfile, blank = True)
 
     def __str__(self):
         return self.fullname + " (" + self.role.name + ")"
