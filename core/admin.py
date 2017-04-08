@@ -10,7 +10,7 @@ admin.site.register(FinancingExperience)
 admin.site.register(TaxExperience)
 admin.site.register(InvestmentExperience)
 
-#from .models_geo import Country, Region, City
+from .models_geo import Country, Region, City
 #admin.site.register(Country)
 #admin.site.register(Region)
 #admin.site.register(City)
