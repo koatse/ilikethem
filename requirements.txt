@@ -1,10 +1,13 @@
 appdirs==1.4.3
+Babel==2.4.0
 dj-database-url==0.4.1
 Django==1.10.4
 django-autoslug==1.9.3
 django-cities-light==3.3.0
+django-phonenumber-field==1.2.0
 gunicorn==19.6.0
 packaging==16.8
+phonenumberslite==8.4.0
 progressbar2==3.16.1
 psycopg2==2.6.2
 pyparsing==2.2.0

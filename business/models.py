@@ -1,4 +1,5 @@
 from django.db import models
+from phonenumber_field.modelfields import PhoneNumberField
 
 class BusinessService(models.Model):
     name = models.CharField(max_length=50)
@@ -9,6 +10,7 @@ class BusinessService(models.Model):
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
+    phone = PhoneNumberField(blank = True)
     website = models.URLField(blank = True)
     service  = models.ManyToManyField(BusinessService, blank = True)
 
