@@ -31,4 +31,5 @@ class InvestmentExperience(models.Model):
     tenant_experience = models.ManyToManyField(TenantExperience, blank = True)
     financing_experience = models.ManyToManyField(FinancingExperience, blank = True)
     tax_experience = models.ManyToManyField(TaxExperience, blank = True)
+    #TODO: add city_invested
 
