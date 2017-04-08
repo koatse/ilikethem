@@ -1,5 +1,4 @@
 from django.db import models
-
 import cities_light
 from cities_light.settings import ICity
 from cities_light.abstract_models import AbstractCountry, AbstractRegion, AbstractCity

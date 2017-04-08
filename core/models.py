@@ -1,5 +1,5 @@
 from django.db import models
-from .models_geo import Country
+from mygeo.models import Country
 
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)

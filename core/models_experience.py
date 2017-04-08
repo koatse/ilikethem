@@ -1,6 +1,6 @@
 from django.db import models
 from .models import PropertyType
-from .models_geo import City
+from mygeo.models import City
 
 class RenovationExperience(models.Model):
     name = models.CharField(max_length=50)
@@ -32,6 +32,4 @@ class InvestmentExperience(models.Model):
     tenant_experience = models.ManyToManyField(TenantExperience, blank = True)
     financing_experience = models.ManyToManyField(FinancingExperience, blank = True)
     tax_experience = models.ManyToManyField(TaxExperience, blank = True)
-    city_experience = models.ManyToManyField(City, blank = True, null = True)
-    #TODO: add city_invested
-
+    city_experience = models.ManyToManyField(City, blank = True)
