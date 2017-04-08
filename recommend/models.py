@@ -43,7 +43,7 @@ class Recommendation(models.Model):
      email = models.EmailField(max_length=50)
      phone = PhoneNumberField(blank = True)
      website = models.URLField(blank = True)
-     service  = models.ForeignKey(BusinessService, null=True)
+     service  = models.ForeignKey(BusinessService)
      city_serviced = models.ManyToManyField(City)
 
      satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0)

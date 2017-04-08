@@ -11,9 +11,9 @@ class BusinessService(models.Model):
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    phone = PhoneNumberField(blank = True)
+    phone = PhoneNumberField()
     website = models.URLField(blank = True)
-    service  = models.ManyToManyField(BusinessService, blank = True)
+    service  = models.ManyToManyField(BusinessService)
     city_headquarter = models.ForeignKey(City)
 
     def __str__(self):
