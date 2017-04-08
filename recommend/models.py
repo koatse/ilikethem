@@ -50,6 +50,7 @@ class Recommendation(models.Model):
      total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0)
      pricing = models.IntegerField(choices=PRICING_CHOICES, default=1)
      on_active_contract = models.BooleanField(default = False)
+     is_repeated_customer = models.BooleanField(default = False)
      main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5)
 
      def __str__(self):
