@@ -1,7 +1,7 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from mygeo.models import City
-from core.models import BusinessService
+from business.models import BusinessService
 
 SATISFACTION_CHOICES = (
          (0, "GOOD"),

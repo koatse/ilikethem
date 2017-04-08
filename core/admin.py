@@ -1,5 +1,5 @@
 from django.contrib import admin
 
-from .models import PropertyType, BusinessService
+from .models import PropertyType, UserProfile
 admin.site.register(PropertyType)
-admin.site.register(BusinessService)
+admin.site.register(UserProfile)

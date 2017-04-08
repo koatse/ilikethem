@@ -1,7 +1,12 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
 from mygeo.models import City
-from core.models import BusinessService
+
+class BusinessService(models.Model):
+    name = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
 
 class BusinessProfile(models.Model):
     name = models.CharField(max_length=50)
