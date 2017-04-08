@@ -17,13 +17,14 @@ class Role(models.Model):
         return self.name
 
 class UserProfile(models.Model):
-    name = models.CharField(max_length=50)
+    fullname = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     phone = PhoneNumberField(blank = True)
     website = models.URLField(blank = True)
     city = models.ManyToManyField(City)
 
     role = models.ForeignKey(Role)
+    intro = models.TextField(max_length=200, default="")
 
     property_type = models.ManyToManyField(PropertyType, blank = True)
     renovation_experience = models.ManyToManyField(RenovationExperience, blank = True)
@@ -35,4 +36,4 @@ class UserProfile(models.Model):
     businessprofile = models.ManyToManyField(BusinessProfile, blank = True)
 
     def __str__(self):
-        return self.name
+        return self.fullname + " (" + self.role.name + ")"
