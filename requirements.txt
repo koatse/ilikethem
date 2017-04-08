@@ -1,5 +1,15 @@
+appdirs==1.4.3
 dj-database-url==0.4.1
 Django==1.10.4
+django-autoslug==1.9.3
+django-cities-light==3.3.0
 gunicorn==19.6.0
+packaging==16.8
+progressbar2==3.16.1
 psycopg2==2.6.2
+pyparsing==2.2.0
+python-utils==2.0.1
+pytz==2017.2
+six==1.10.0
+Unidecode==0.4.20
 whitenoise==3.2
