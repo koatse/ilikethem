@@ -1,5 +1,4 @@
 from django.contrib import admin
 
-from .models import BusinessService, BusinessProfile
-admin.site.register(BusinessService)
+from .models import BusinessProfile
 admin.site.register(BusinessProfile)
