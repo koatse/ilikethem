@@ -1,0 +1,10 @@
+{% extends 'rein/base.html' %}
+{% block content %}
+<h2>Recommendation</h2>
+<ul>
+	<!--TODO: add link -->
+	{% for recommendation in object_list %}
+	<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation.name }} </a> recommened by {{ recommendation.ownby }} </li>
+	{% endfor %}
+</ul>
+{% endblock content %}

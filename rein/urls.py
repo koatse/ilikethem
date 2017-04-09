@@ -20,4 +20,5 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^business/', include('business.urls', namespace="business")),
     url(r'^experience/', include('experience.urls', namespace="experience")),
+    url(r'^recommend/', include('recommend.urls', namespace="recommend")),
 ]

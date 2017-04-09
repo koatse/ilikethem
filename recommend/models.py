@@ -56,6 +56,4 @@ class Recommendation(models.Model):
      main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5)
 
      def __str__(self):
-         return self.name + " (" + self.service.name + ")" + " - " + REUSE_REASON_CHOICES[self.main_reason_to_reuse][1]
-
-
+         return self.name + " (" + self.service.name + ")" + " - " + self.get_main_reason_to_reuse_display()

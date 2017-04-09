@@ -1,0 +1,16 @@
+{% extends 'rein/base.html' %}
+{% block content %}
+<h2>RecommendationDetail</h2>
+<h3> {{ object.name }}</h3>
+<ul>
+	<li> Recommended by : {{object.ownby}} </li>
+	<li> Email: {{ object.email }} </li>
+	<li> Phone: {{ object.phone }} </li>
+	<li> Website: {{ object.website }} </li>
+	<li> Service: {{ object.service }} </li>
+	<li> Satisfaction: {{ object.get_satisfaction_display }} </li>
+	<li> Total Money Spent: {{ object.get_total_money_spent_display }} </li>
+	<li> Pricing: {{ object.get_pricing_display }} </li>
+	<li> On Active Contract: {{ object.on_active_contract }} </li>
+</ul>
+{% endblock content %}
