@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^experience/', include('experience.urls', namespace="experience")),
     url(r'^recommend/', include('recommend.urls', namespace="recommend")),
     url(r'^core/', include('core.urls', namespace="core")),
+    url(r'^$', include('core.urls', namespace="core")),
 ]
