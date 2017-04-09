@@ -8,8 +8,8 @@
 			{% endblock title %}
 		</title>
 
-		<!--
-		<link rel="stylesheet" href="%{ static 'directory2/css/style.css' %}"/>
+		<!-- TODO
+		<link rel="stylesheet" href="%{ static 'rein/css/style.css' %}"/>
 		-->
 
 
@@ -19,6 +19,7 @@
 	<body>
 		{% block content %}{% endblock content %}
 		{% block footer %}
+		<h3>Links</h3>
 			<a href="{% url 'business:service' %}">BusinessService</a>
 			<a href="{% url 'business:profile' %}">BusinessProfile</a>
 		{% endblock footer %}

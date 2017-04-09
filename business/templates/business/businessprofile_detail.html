@@ -2,8 +2,13 @@
 {% extends 'rein/base.html' %}
 {% block content %}
 <h2>BusinessProfileDetail</h2>
+<h3> {{ object.name }}</h3>
 <ul>
-	<li> {{object.ownby}} </li>
-	<li> {{object.name}} </li>
+	<li> Owner: {{object.ownby}} </li>
+	<li> Email: {{ object.email }} </li>
+	<li> Phone: {{ object.phone }} </li>
+	<li> Website: {{ object.website }} </li>
+	<li> Services: {{ object.service.all | join:", " }} </li>
+	<li> HeadOffice: {{ object.city_headquarter }} </li>
 </ul>
 {% endblock content %}

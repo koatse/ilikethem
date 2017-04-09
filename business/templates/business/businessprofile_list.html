@@ -1,15 +1,18 @@
 {% extends 'rein/base.html' %}
 {% block content %}
 <h2>BusinessProfile</h2>
+{% for business_profile in object_list %}
+<h3> {{ business_profile.name }} </h3>
 <ul>
-	{% for business_profile in object_list %}
-		<li> {{ business_profile.ownby }} </li>
-		<li> {{ business_profile.name }} </li>
-		<li> {{ business_profile.email }} </li>
-		<li> {{ business_profile.phone }} </li>
-		<li> {{ business_profile.website }} </li>
-		<li> {{ business_profile.service }} </li>
-		<li> {{ business_profile.city_headquarter }} </li>
-	{% endfor %}
+	<li> Owner: {{ business_profile.ownby }} </li>
+	<li> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}"> {{ business_profile.name }} </a></li>
+	<!--
+	<li> {{ business_profile.email }} </li>
+	<li> {{ business_profile.phone }} </li>
+	<li> {{ business_profile.website }} </li>
+	<li> {{ business_profile.service }} </li>
+	<li> {{ business_profile.city_headquarter }} </li>
+	-->
 </ul>
+{% endfor %}
 {% endblock content %}
