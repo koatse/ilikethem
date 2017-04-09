@@ -4,7 +4,7 @@
 {% for business_profile in object_list %}
 <h3> {{ business_profile.name }} </h3>
 <ul>
-	<li> Owner: {{ business_profile.ownby }} </li>
+	<li> Owner: <a href="{% url 'core:userprofile_detail' pk=business_profile.ownby.pk %}"> {{ business_profile.ownby }} </a></li>
 	<li> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}"> {{ business_profile.name }} </a></li>
 	<!--
 	<li> {{ business_profile.email }} </li>

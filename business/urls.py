@@ -7,6 +7,6 @@ urlpatterns = [
     url(r'^service/detail/(?P<pk>\d+)/', BusinessServiceDetailView.as_view(), name="service_detail"),
     url(r'^profile/$', BusinessProfileListView.as_view(), name="profile"),
     url(r'^profile/detail/(?P<pk>\d+)/', BusinessProfileDetailView.as_view(), name="profile_detail"),
-    url(r'^service/create$', CreateBusinessService, name="create_service"),
-    url(r'^profile/create$', CreateBusinessProfile, name="create_profile"),
+    url(r'^service/create/$', CreateBusinessService, name="create_service"),
+    url(r'^profile/create/$', CreateBusinessProfile, name="create_profile"),
 ]
