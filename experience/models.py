@@ -1,5 +1,4 @@
 from django.db import models
-from mygeo.models import City
 
 class RenovationExperience(models.Model):
     name = models.CharField(max_length=50)

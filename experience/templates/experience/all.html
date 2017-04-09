@@ -1,0 +1,30 @@
+{% extends 'rein/base.html' %}
+{% block content %}
+<h2>RenovationExperience</h2>
+<ul>
+	{% for object in renovation %}
+		<li> {{ object.name }} </li>
+	{% endfor %}
+</ul>
+
+<h2>TenantExperience</h2>
+<ul>
+	{% for object in tenant %}
+		<li> {{ object.name }} </li>
+	{% endfor %}
+</ul>
+
+<h2>FinancingExperience</h2>
+<ul>
+	{% for object in financing %}
+		<li> {{ object.name }} </li>
+	{% endfor %}
+</ul>
+
+<h2>TaxExperience</h2>
+<ul>
+	{% for object in tax %}
+		<li> {{ object.name }} </li>
+	{% endfor %}
+</ul>
+{% endblock content %}
