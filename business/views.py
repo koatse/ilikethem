@@ -3,6 +3,7 @@ from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+from core.models import UserProfile
 from .models import BusinessService, BusinessProfile
 from .forms import BusinessServiceForm
 from .forms import BusinessProfileForm
@@ -38,13 +39,18 @@ def CreateBusinessService(request):
 @login_required
 def CreateBusinessProfile(request):
     form_class = BusinessProfileForm
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+    except:
+        raise Http404("Current logged in user " + str(request.user) + " has no userprofile")
 
     if request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
-            business_service = form.save(commit=False)
-            business_service.user = request.user
-            business_service.save()
+            business_profile = form.save(commit=False)
+            business_profile.user = request.user
+            business_profile.ownby = userprofile
+            business_profile.save()
             return redirect("business:profile")
     else:
         form = form_class()

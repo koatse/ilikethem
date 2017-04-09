@@ -17,7 +17,7 @@ class Role(models.Model):
         return self.name
 
 class UserProfile(models.Model):
-    user = models.ForeignKey(User, blank=True, null=True)
+    user = models.OneToOneField(User, blank=True, null=True)
     fullname = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     phone = PhoneNumberField(blank = True)

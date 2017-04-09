@@ -9,4 +9,4 @@ class BusinessServiceForm(ModelForm):
 class BusinessProfileForm(ModelForm):
     class Meta:
         model = BusinessProfile
-        fields = '__all__'
+        exclude = ['user', 'ownby']

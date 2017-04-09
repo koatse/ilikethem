@@ -17,11 +17,26 @@
 	</head>
 
 	<body>
+		<h3>Accounts</h3>
+		{% if user.is_authenticated %}
+		<li>
+			<a href="{% url 'auth_logout' %}">Logout from {{user}} </a>
+		</li>
+		{% else %}
+		<li>
+		    <a href="{% url 'auth_login' %}">Login</a>
+		</li>
+		<li>
+		    <a href="{% url 'registration_register' %}">Register</a>
+		</li>
+		{% endif %}
+
 		{% block content %}{% endblock content %}
+
 		{% block footer %}
 		<h3>Links</h3>
 			<a href="{% url 'core:userprofile_all' %}">All UserProfile</a>
-			<a href="{% url 'core:create_userprofile' %}">Create UserProfile</a>
+			<a href="{% url 'core:edit_userprofile' %}">Edit UserProfile</a>
 			<br/>
 			<a href="{% url 'business:service' %}">All BusinessService</a>
 			<a href="{% url 'business:create_service' %}">Create BusinessService</a>
@@ -34,19 +49,6 @@
 			<a href="{% url 'recommend:all' %}">All Recommendation</a>
 			<a href="{% url 'recommend:create' %}">Create Recommendation</a>
 		{% endblock footer %}
-		<h3>Accounts</h3>
-		{% if user.is_authenticated %}
-		<li>
-		    <a href="{% url 'auth_logout' %}">Logout</a>
-		</li>
-		{% else %}
-		<li>
-		    <a href="{% url 'auth_login' %}">Login</a>
-		</li>
-		<li>
-		    <a href="{% url 'registration_register' %}">Register</a>
-		</li>
-		{% endif %}
 
 	</body>
 

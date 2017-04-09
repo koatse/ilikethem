@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.contrib.auth.decorators import login_required
@@ -28,9 +29,28 @@ def CreateUserProfile(request):
             userprofile = form.save(commit=False)
             userprofile.user = request.user
             userprofile.save()
-            return redirect("core:userprofile_all")
+            return redirect("core:userprofile_detail", pk=userprofile.pk)
     else:
         form = form_class()
 
     return render(request, "core/create_userprofile.html", {'form': form})
+
+@login_required
+def EditUserProfile(request):
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+    except:
+        return redirect("core:create_userprofile")
+
+    form_class = UserProfileForm
+
+    if request.method == "POST":
+        form = form_class(request.POST, instance=userprofile)
+        if form.is_valid():
+            userprofile.save()
+            return redirect("core:userprofile_detail", pk=userprofile.pk)
+    else:
+        form = form_class(instance=userprofile)
+
+    return render(request, "core/edit_userprofile.html", {'form': form})
 
