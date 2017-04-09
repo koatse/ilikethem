@@ -4,6 +4,7 @@ from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from .models import BusinessService, BusinessProfile
 from .forms import BusinessServiceForm
+from .forms import BusinessProfileForm
 
 class BusinessServiceListView(ListView):
     model = BusinessService
@@ -29,4 +30,17 @@ def CreateBusinessService(request):
         form = form_class()
 
     return render(request, "business/create_business_service.html", {'form': form})
+
+def CreateBusinessProfile(request):
+    form_class = BusinessProfileForm
+
+    if request.method == "POST":
+        form = form_class(request.POST)
+        if form.is_valid():
+            business_service = form.save()
+            return redirect("business:profile")
+    else:
+        form = form_class()
+
+    return render(request, "business/create_business_profile.html", {'form': form})
 

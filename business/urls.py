@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
 from .views import BusinessServiceListView, BusinessServiceDetailView, BusinessProfileListView, BusinessProfileDetailView
-from .views import CreateBusinessService
+from .views import CreateBusinessService, CreateBusinessProfile
 
 urlpatterns = [
     url(r'^service/$', BusinessServiceListView.as_view(), name="service"),
@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^profile/$', BusinessProfileListView.as_view(), name="profile"),
     url(r'^profile/detail/(?P<pk>\d+)/', BusinessProfileDetailView.as_view(), name="profile_detail"),
     url(r'^service/create$', CreateBusinessService, name="create_service"),
+    url(r'^profile/create$', CreateBusinessProfile, name="create_profile"),
 ]
