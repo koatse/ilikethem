@@ -25,10 +25,13 @@ def CreateBusinessService(request):
         form = form_class(request.POST)
         if form.is_valid():
             business_service = form.save()
+            #Got here? created new object
             return redirect("business:service")
     else:
+        #Got here? when user comes here first time
         form = form_class()
 
+    #Got here? either first time or failed to create new object
     return render(request, "business/create_business_service.html", {'form': form})
 
 def CreateBusinessProfile(request):

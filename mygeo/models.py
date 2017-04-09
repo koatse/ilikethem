@@ -36,8 +36,9 @@ class Region(AbstractRegion):
 connect_default_signals(Region)
 
 class City(AbstractCity):
-    #timezone = models.CharField(max_length=40, null=True)
-    pass
+    def __str__(self):
+        return self.name
+
 connect_default_signals(City)
 
 class Province(models.Model):

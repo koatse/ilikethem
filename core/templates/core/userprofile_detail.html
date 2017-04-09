@@ -3,17 +3,33 @@
 <h2>UserProfileDetail</h2>
 <h3> {{ object.fullname }}</h3>
 <ul>
-	<li> Email: {{ object.email }} </li>
-	<li> Phone: {{ object.phone }} </li>
-	<li> Website: {{ object.website }} </li>
-	<li> Role: {{ object.role }} </li>
-	<li> Recommendations</li>
+	<li> Basic Info:
+	<ul>
+		<li> Email: {{ object.email }} </li>
+		<li> Phone: {{ object.phone }} </li>
+		<li> Website: {{ object.website }} </li>
+		<li> Address: {{ object.city }} </li>
+		<li> Self Introduction: {{ object.intro }} </li>
+	</ul>
+
+	<li> Investment Profile:
+	<ul>
+		<li> Primary Role: {{ object.role }} </li>
+		<li> Invested Property Types: {{ object.property_type.all | join:", " }} </li>
+		<li> Invested Cities: {{ object.city_experience.all | join:", " }} </li>
+		<li> Renovation Experience: {{ object.renovation_experience.all | join:", " }} </li>
+		<li> Tenant Experience: {{ object.tenant_experience.all | join:", " }} </li>
+		<li> Financing Experience: {{ object.financing_experience.all | join:", " }} </li>
+		<li> Tax Strategies Experience: {{ object.tax_experience.all | join:", " }} </li>
+	</ul>
+
+	<li> Recommended Contacts: </li>
 	<ul>
 		{% for recommendation in recommendations %}
 		<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation }} </a> </li>
 		{% endfor %}
 	</ul>
-	<li> Businesses </li>
+	<li> Owned Businesses: </li>
 	<ul>
 		{% for business_profile in business_profiles %}
 		<li> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}">{{ business_profile }} </a> </li>
