@@ -57,3 +57,22 @@ def CreateBusinessProfile(request):
 
     return render(request, "business/create_business_profile.html", {'form': form})
 
+@login_required
+def EditBusinessProfile(request, pk):
+    try:
+        businessprofile = BusinessProfile.objects.get(pk=pk)
+    except:
+        return redirect("business:create_profile")
+
+    form_class = BusinessProfileForm
+
+    if request.method == "POST":
+        form = form_class(request.POST, instance=businessprofile)
+        if form.is_valid():
+            form.save()
+            return redirect("business:profile_detail", pk=businessprofile.pk)
+    else:
+        form = form_class(instance=businessprofile)
+
+    return render(request, "business/edit_business_profile.html", {'form': form})
+

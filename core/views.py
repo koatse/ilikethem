@@ -47,7 +47,7 @@ def EditUserProfile(request):
     if request.method == "POST":
         form = form_class(request.POST, instance=userprofile)
         if form.is_valid():
-            userprofile.save()
+            form.save()
             return redirect("core:userprofile_detail", pk=userprofile.pk)
     else:
         form = form_class(instance=userprofile)

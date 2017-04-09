@@ -10,4 +10,9 @@
 	<li> Services: {{ object.service.all | join:", " }} </li>
 	<li> HeadOffice: {{ object.city_headquarter }} </li>
 </ul>
+
+{% if user.is_authenticated and user.pk == object.user.pk %}
+<a href="{% url 'business:edit_profile' pk=object.pk %}"> Edit me </a>
+{% endif %}
+
 {% endblock content %}
