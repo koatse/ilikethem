@@ -4,4 +4,4 @@ from . models import Recommendation
 class RecommendationForm(ModelForm):
     class Meta:
         model = Recommendation
-        fields = '__all__'
+        exclude = ['user', 'ownby']

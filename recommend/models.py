@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from mygeo.models import City
 from core.models import UserProfile
@@ -40,6 +41,7 @@ REUSE_REASON_CHOICES = (
 )
 
 class Recommendation(models.Model):
+     user = models.ForeignKey(User, blank=True, null=True)
      ownby = models.ForeignKey(UserProfile)
      name = models.CharField(max_length=50)
      email = models.EmailField(max_length=50)
