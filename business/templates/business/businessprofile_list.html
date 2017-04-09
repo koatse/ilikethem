@@ -1,3 +1,5 @@
+{% extends 'rein/base.html' %}
+{% block content %}
 <h2>BusinessProfile</h2>
 <ul>
 	{% for business_profile in object_list %}
@@ -10,3 +12,4 @@
 		<li> {{ business_profile.city_headquarter }} </li>
 	{% endfor %}
 </ul>
+{% endblock content %}

@@ -1,0 +1,28 @@
+{% load static %}
+<!doctype html>
+<html>
+	<head>
+		<title>
+			{% block title %}
+			My Rein Project
+			{% endblock title %}
+		</title>
+
+		<!--
+		<link rel="stylesheet" href="%{ static 'directory2/css/style.css' %}"/>
+		-->
+
+
+		{% block header %}{% endblock header %}
+	</head>
+
+	<body>
+		{% block content %}{% endblock content %}
+		{% block footer %}
+			<a href="{% url 'business:service' %}">BusinessService</a>
+			<a href="{% url 'business:profile' %}">BusinessProfile</a>
+		{% endblock footer %}
+	</body>
+
+	
+</html>
