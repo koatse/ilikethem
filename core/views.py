@@ -29,6 +29,7 @@ def CreateUserProfile(request):
             userprofile = form.save(commit=False)
             userprofile.user = request.user
             userprofile.save()
+            form.save_m2m()
             return redirect("core:userprofile_detail", pk=userprofile.pk)
     else:
         form = form_class()

@@ -51,6 +51,7 @@ def CreateBusinessProfile(request):
             business_profile.user = request.user
             business_profile.ownby = userprofile
             business_profile.save()
+            form.save_m2m()
             return redirect("business:profile")
     else:
         form = form_class()
