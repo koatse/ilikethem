@@ -1,0 +1,11 @@
+{% extends 'rein/base.html' %}
+{% block content %}
+<h2>UserProfileDetail</h2>
+<h3> {{ object.fullname }}</h3>
+<ul>
+	<li> Email: {{ object.email }} </li>
+	<li> Phone: {{ object.phone }} </li>
+	<li> Website: {{ object.website }} </li>
+	<li> Role: {{ object.role }} </li>
+</ul>
+{% endblock content %}
