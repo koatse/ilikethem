@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+from django.contrib.auth.decorators import login_required
 from .models import UserProfile
 from .forms import UserProfileForm
 from business.models import BusinessProfile
@@ -17,13 +18,16 @@ class UserProfileDetailView(DetailView):
         context["business_profiles"] = BusinessProfile.objects.filter(ownby=context["object"].pk)
         return context
 
+@login_required
 def CreateUserProfile(request):
     form_class = UserProfileForm
 
     if request.method == "POST":
         form = form_class(request.POST)
         if form.is_valid():
-            userprofile = form.save()
+            userprofile = form.save(commit=False)
+            userprofile.user = request.user
+            userprofile.save()
             return redirect("core:userprofile_all")
     else:
         form = form_class()

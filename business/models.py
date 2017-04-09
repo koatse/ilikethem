@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from phonenumber_field.modelfields import PhoneNumberField
 from core.models import UserProfile
 from mygeo.models import City
@@ -10,6 +11,7 @@ class BusinessService(models.Model):
         return self.name
 
 class BusinessProfile(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True)
     ownby = models.ForeignKey(UserProfile)
     name = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)

@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import url, include
 from django.contrib import admin
+from .backends import MyRegistrationView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -22,6 +23,7 @@ urlpatterns = [
     url(r'^experience/', include('experience.urls', namespace="experience")),
     url(r'^recommend/', include('recommend.urls', namespace="recommend")),
     url(r'^core/', include('core.urls', namespace="core")),
+    url(r'^accounts/register/$', MyRegistrationView.as_view(), name="register"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
     #url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'^$', include('core.urls', namespace="core")),

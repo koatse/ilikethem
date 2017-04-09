@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from mygeo.models import City
 from phonenumber_field.modelfields import PhoneNumberField
 from experience.models import RenovationExperience, TenantExperience, FinancingExperience, TaxExperience
@@ -16,6 +17,7 @@ class Role(models.Model):
         return self.name
 
 class UserProfile(models.Model):
+    user = models.ForeignKey(User, blank=True, null=True)
     fullname = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
     phone = PhoneNumberField(blank = True)
@@ -23,7 +25,7 @@ class UserProfile(models.Model):
     city = models.ForeignKey(City)
 
     role = models.ForeignKey(Role)
-    intro = models.TextField(max_length=200, default="")
+    intro = models.TextField(max_length=200, blank = True, default="")
 
     property_type = models.ManyToManyField(PropertyType, blank = True)
     renovation_experience = models.ManyToManyField(RenovationExperience, blank = True)
