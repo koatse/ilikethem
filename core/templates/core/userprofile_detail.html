@@ -7,5 +7,17 @@
 	<li> Phone: {{ object.phone }} </li>
 	<li> Website: {{ object.website }} </li>
 	<li> Role: {{ object.role }} </li>
+	<li> Recommendations</li>
+	<ul>
+		{% for recommendation in recommendations %}
+		<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation }} </a> </li>
+		{% endfor %}
+	</ul>
+	<li> Businesses </li>
+	<ul>
+		{% for business_profile in business_profiles %}
+		<li> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}">{{ business_profile }} </a> </li>
+		{% endfor %}
+	</ul>
 </ul>
 {% endblock content %}
