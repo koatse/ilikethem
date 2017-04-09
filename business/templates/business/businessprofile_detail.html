@@ -12,7 +12,11 @@
 </ul>
 
 {% if user.is_authenticated and user.pk == object.user.pk %}
-<a href="{% url 'business:edit_profile' pk=object.pk %}"> Edit me </a>
+Actions
+<ul>
+	<li><a href="{% url 'business:edit_profile' pk=object.pk %}"> Edit me </a></li>
+	<li><a href="{% url 'business:delete_profile' pk=object.pk %}"> Delete me </a></li>
+</ul>
 {% endif %}
 
 {% endblock content %}

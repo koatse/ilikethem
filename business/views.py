@@ -77,3 +77,15 @@ def EditBusinessProfile(request, pk):
 
     return render(request, "business/edit_business_profile.html", {'form': form})
 
+@login_required
+def DeleteBusinessProfile(request, pk):
+    try:
+        businessprofile = BusinessProfile.objects.get(pk=pk)
+        ownby = businessprofile.ownby
+        businessprofile.delete()
+    except:
+        return redirect("business:profile")
+
+    return redirect("core:userprofile_detail", ownby.pk)
+
+
