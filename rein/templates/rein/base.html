@@ -21,6 +21,7 @@
 		{% if user.is_authenticated %}
 			<li><a href="{% url 'core:myuserprofile' %}">My UserProfile</a></li>
 			<li><a href="{% url 'business:myprofile' %}">My BusinessProfile</a></li>
+			<li><a href="{% url 'recommend:my' %}">My Recommendation</a></li>
 			<li><a href="{% url 'auth_logout' %}">Logout from {{user}} </a></li>
 		{% else %}
 		<li>
