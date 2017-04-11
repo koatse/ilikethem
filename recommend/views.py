@@ -44,3 +44,34 @@ def CreateRecommendation(request):
 
     return render(request, "recommend/create_recommendation.html", {'form': form})
 
+@login_required
+def EditRecommendation(request, pk):
+    try:
+        recommendation = Recommendation.objects.get(pk=pk)
+    except:
+        return redirect("recommend:create")
+
+    form_class = RecommendationForm
+
+    if request.method == "POST":
+        form = form_class(request.POST, instance=recommendation)
+        if form.is_valid():
+            form.save()
+            return redirect("recommend:detail", pk=recommendation.pk)
+    else:
+        form = form_class(instance=recommendation)
+
+    return render(request, "recommend/edit_recommendation.html", {'form': form})
+
+@login_required
+def DeleteRecommendation(request, pk):
+    try:
+        recommendation = Recommendation.objects.get(pk=pk)
+        ownby = recommendation.ownby
+        recommendation.delete()
+    except:
+        return redirect("recommend:my")
+
+    return redirect("core:userprofile_detail", ownby.pk)
+
+

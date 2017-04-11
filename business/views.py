@@ -94,7 +94,7 @@ def DeleteBusinessProfile(request, pk):
         ownby = businessprofile.ownby
         businessprofile.delete()
     except:
-        return redirect("business:profile")
+        return redirect("business:myprofile")
 
     return redirect("core:userprofile_detail", ownby.pk)
 

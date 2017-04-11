@@ -8,9 +8,19 @@
 	<li> Phone: {{ object.phone }} </li>
 	<li> Website: {{ object.website }} </li>
 	<li> Service: {{ object.service }} </li>
+	<li> City Serviced: {{ object.city_serviced.all | join:", " }} </li>
 	<li> Satisfaction: {{ object.get_satisfaction_display }} </li>
 	<li> Total Money Spent: {{ object.get_total_money_spent_display }} </li>
 	<li> Pricing: {{ object.get_pricing_display }} </li>
 	<li> On Active Contract: {{ object.on_active_contract }} </li>
+	<li> Is Repeated Customer: {{ object.is_repeated_customer }} </li>
 </ul>
+
+{% if user.is_authenticated and user.pk == object.user.pk %}
+<h4>Make updates</h4>
+<ul>
+	<li><a href="{% url 'recommend:edit' pk=object.pk %}">Edit me</a></li>
+	<li><a href="{% url 'recommend:delete' pk=object.pk %}">Delete me</a></li>
+</ul>
+{% endif %}
 {% endblock content %}
