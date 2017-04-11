@@ -55,3 +55,10 @@ def EditUserProfile(request):
 
     return render(request, "core/edit_userprofile.html", {'form': form})
 
+@login_required
+def UserHomePageView(request):
+    try:
+        userprofile = UserProfile.objects.get(user=request.user)
+    except:
+        return redirect("core:create_userprofile")
+    return redirect("core:userprofile_detail", pk=userprofile.pk)
