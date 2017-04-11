@@ -41,4 +41,13 @@
 		{% endfor %}
 	</ul>
 </ul>
+
+{% if user.is_authenticated and user.pk == object.user.pk %}
+<h4>Make updates</h4>
+<ul>
+	<li><a href="{% url 'core:edit_userprofile' %}">Edit UserProfile</a></li>
+	<li><a href="{% url 'business:create_profile' %}">Create BusinessProfile</a></li>
+	<li><a href="{% url 'recommend:create' %}">Create Recommendation</a></li>
+</ul>
+{% endif %}
 {% endblock content %}
