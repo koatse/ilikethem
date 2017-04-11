@@ -52,7 +52,7 @@ def CreateBusinessProfile(request):
     try:
         userprofile = UserProfile.objects.get(user=request.user)
     except:
-        raise Http404("Current logged in user " + str(request.user) + " has no userprofile")
+        return redirect("core:create_userprofile")
 
     if request.method == "POST":
         form = form_class(request.POST)
