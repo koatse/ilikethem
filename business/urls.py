@@ -1,10 +1,11 @@
 from django.conf.urls import include, url
-from .views import BusinessServiceListView, BusinessServiceDetailView, BusinessProfileListView, BusinessProfileDetailView
+from .views import BusinessServiceListView, BusinessServiceDetailView, BusinessProfileListView, MyBusinessProfileListView, BusinessProfileDetailView
 from .views import CreateBusinessService, CreateBusinessProfile, EditBusinessProfile, DeleteBusinessProfile
 
 urlpatterns = [
     url(r'^service/$', BusinessServiceListView.as_view(), name="service"),
     url(r'^service/detail/(?P<pk>\d+)/', BusinessServiceDetailView.as_view(), name="service_detail"),
+    url(r'^myprofile/$', MyBusinessProfileListView.as_view(), name="myprofile"),
     url(r'^profile/$', BusinessProfileListView.as_view(), name="profile"),
     url(r'^profile/detail/(?P<pk>\d+)/', BusinessProfileDetailView.as_view(), name="profile_detail"),
     url(r'^service/create/$', CreateBusinessService, name="create_service"),

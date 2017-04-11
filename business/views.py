@@ -17,6 +17,16 @@ class BusinessServiceDetailView(DetailView):
 class BusinessProfileListView(ListView):
     model = BusinessProfile
 
+class MyBusinessProfileListView(ListView):
+    model = BusinessProfile
+
+    def get_queryset(self):
+        if self.request.user.is_authenticated:
+            return BusinessProfile.objects.filter(user=self.request.user)
+        else:
+            return BusinessProfile.objects.all()
+
+
 class BusinessProfileDetailView(DetailView):
     model = BusinessProfile
 

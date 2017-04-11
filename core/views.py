@@ -56,7 +56,7 @@ def EditUserProfile(request):
     return render(request, "core/edit_userprofile.html", {'form': form})
 
 @login_required
-def UserHomePageView(request):
+def MyUserProfileView(request):
     try:
         userprofile = UserProfile.objects.get(user=request.user)
     except:
