@@ -1,10 +1,15 @@
 {% extends 'rein/base.html' %}
 {% block content %}
+{% if user.is_authenticated and object.user.pk == user.pk %}
+<h2>MyProfileDetail</h2>
+{% else %}
 <h2>UserProfileDetail</h2>
+{% endif %}
 <h3> {{ object.fullname }}</h3>
 <ul>
 	<li> Basic Info:
 	<ul>
+		<li> Phone: {{ object.phone }} </li>
 		<li> Email: {{ object.email }} </li>
 		<li> Phone: {{ object.phone }} </li>
 		<li> Website: {{ object.website }} </li>

@@ -1,6 +1,6 @@
 {% extends 'rein/base.html' %}
 {% block content %}
-<h2>UserProfile</h2>
+<h2>UserProfiles</h2>
 <ul>
 	{% for userprofile in object_list %}
 	<li> <a href="{% url 'core:userprofile_detail' pk=userprofile.pk %}">{{ userprofile.fullname }}</a> </li>
