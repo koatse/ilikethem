@@ -6,7 +6,7 @@
 {% block content %}
 <h2>RenovationExperience</h2>
 <ul>
-	{% for experience in renovation_experience %}
+	{% for experience in renovation %}
 		<li> {{ experience.name }} 
 			(<a href="{% url "experience:edit_reno" pk=experience.pk %}">edit</a>)
 		</li>
