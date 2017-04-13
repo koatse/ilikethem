@@ -1,0 +1,23 @@
+{% extends 'rein/base.html' %}
+{% block title %}
+    Renovation Experience - {{ block.super }}
+{% endblock title %} 
+
+{% block content %}
+<h2>RenovationExperience</h2>
+<ul>
+	{% for experience in renovation_experience %}
+		<li> {{ experience.name }} 
+			(<a href="{% url "experience:edit_reno" pk=experience.pk %}">edit</a>)
+		</li>
+	{% endfor %}
+</ul>
+
+<h2>{{ mode }} a Renovation Experience</h2>
+<form role="form" action="" method="post">
+{% csrf_token %}
+{{ form.as_p }}
+<input type="submit" value="Submit" />
+</form>
+
+{% endblock %}
