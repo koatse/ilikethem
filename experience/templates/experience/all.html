@@ -3,7 +3,10 @@
 <h2>RenovationExperience</h2>
 <ul>
 	{% for object in renovation %}
-		<li> {{ object.name }} </li>
+		<li> {{ object.name }} 
+			(<a href="{% url "experience:edit_reno" pk=object.pk %}">edit</a>)
+			(<a href="{% url "experience:delete_reno" pk=object.pk %}">delete</a>)
+		</li>
 	{% endfor %}
 </ul>
 

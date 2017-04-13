@@ -1,7 +1,7 @@
 from django.shortcuts import render, reverse
 from django.views.generic.list import ListView
 from django.views.generic import TemplateView
-from django.views.generic import CreateView, UpdateView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from .models import RenovationExperience, TenantExperience, FinancingExperience, TaxExperience
 
 class ExperienceMixin(object):
@@ -13,6 +13,7 @@ class ExperienceMixin(object):
         context["tax"] = TaxExperience.objects.all()
         return context
 
+#These two can be moved to some common util
 class CreateMixin(object):
     def get_context_data(self, **kwargs):
         context = super(CreateMixin, self).get_context_data(**kwargs)
@@ -42,3 +43,5 @@ class CreateRenovationExperienceView(RenovationMixin, CreateMixin, CreateView):
 class UpdateRenovationExperienceView(RenovationMixin, UpdateMixin, UpdateView):
     pass
 
+class DeleteRenovationExperienceView(RenovationMixin, DeleteView):
+    template_name = "experience/delete.html"

@@ -9,6 +9,7 @@
 	{% for experience in renovation %}
 		<li> {{ experience.name }} 
 			(<a href="{% url "experience:edit_reno" pk=experience.pk %}">edit</a>)
+			(<a href="{% url "experience:delete_reno" pk=experience.pk %}">delete</a>)
 		</li>
 	{% endfor %}
 </ul>
