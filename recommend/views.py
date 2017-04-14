@@ -1,7 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
+from django.views.generic import CreateView, UpdateView, DeleteView
 from core.models import UserProfile
 from .models import Recommendation
 from .forms import RecommendationForm
@@ -75,3 +77,19 @@ def DeleteRecommendation(request, pk):
     return redirect("core:userprofile_detail", ownby.pk)
 
 
+#TODO: a mixin that checks the existence of UserProfile and redirect if not exists
+class RequireUserProfileMixin(object):
+    def form_valid(self, form):
+        try:
+            userprofile = UserProfile.objects.get(user=self.request.user)
+        except:
+            return redirect("core:create_userprofile")
+        return super(RequiredUserProfileMxin, self).form_valid(form)
+
+class CreateRecommendationView(LoginRequiredMixin, CreateView):
+    model = Recommendation
+    form_class = RecommendationForm
+    template_name = "recommend/create.html"
+
+    def get_success_url(self):
+        return reverse("recommend:my")
