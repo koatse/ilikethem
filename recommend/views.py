@@ -7,6 +7,8 @@ from django.views.generic import CreateView, UpdateView, DeleteView
 from core.models import UserProfile
 from .models import Recommendation
 from .forms import RecommendationForm
+import logging
+logger = logging.getLogger("recommend")
 
 class RecommendationListView(ListView):
     model = Recommendation
@@ -76,20 +78,29 @@ def DeleteRecommendation(request, pk):
 
     return redirect("core:userprofile_detail", ownby.pk)
 
-
-#TODO: a mixin that checks the existence of UserProfile and redirect if not exists
+#TODO: how to log to the terminal ?
 class RequireUserProfileMixin(object):
-    def form_valid(self, form):
+    def dispatch(self, request, *args, **kwargs):
+        logger.info("dispatch")
         try:
             userprofile = UserProfile.objects.get(user=self.request.user)
         except:
             return redirect("core:create_userprofile")
-        return super(RequiredUserProfileMxin, self).form_valid(form)
+        self.kwargs["userprofile"] = userprofile
+        return super(RequireUserProfileMixin, self).dispatch(request, *args, **kwargs)
 
-class CreateRecommendationView(LoginRequiredMixin, CreateView):
+class CreateRecommendationView(LoginRequiredMixin, RequireUserProfileMixin, CreateView):
     model = Recommendation
     form_class = RecommendationForm
-    template_name = "recommend/create.html"
+    template_name = "recommend/create_recommendation.html"
 
     def get_success_url(self):
         return reverse("recommend:my")
+
+    def form_valid(self, form):
+        recommendation = form.save(commit=False)
+        recommendation.user = self.request.user
+        recommendation.ownby = self.kwargs.get("userprofile")
+        recommendation.save()
+        form.save_m2m()
+        return redirect("recommend:my")
