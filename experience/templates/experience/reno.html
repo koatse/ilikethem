@@ -15,10 +15,6 @@
 </ul>
 
 <h2>{{ mode }} a Renovation Experience</h2>
-<form role="form" action="" method="post">
-{% csrf_token %}
-{{ form.as_p }}
-<input type="submit" value="Submit" />
-</form>
+{% include 'rein/bootstrap_form.html'%}
 
 {% endblock %}
