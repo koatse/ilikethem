@@ -16,11 +16,11 @@
 	<li> Is Repeated Customer: {{ object.is_repeated_customer }} </li>
 </ul>
 
-{% if user.is_authenticated and user.pk == object.user.pk %}
-<h4>Make updates</h4>
-<ul>
-	<li><a href="{% url 'recommend:edit' pk=object.pk %}">Edit me</a></li>
-	<li><a href="{% url 'recommend:delete' pk=object.pk %}">Delete me</a></li>
-</ul>
-{% endif %}
 {% endblock content %}
+
+{% block edit_dropdown %}
+    {% if user.is_authenticated and user.pk == object.user.pk %}
+    <li><a href="{% url 'recommend:edit' pk=object.pk %}">Edit Recomendation</a></li>
+    <li><a href="{% url 'recommend:delete' pk=object.pk %}">Delete Recommendation</a></li>
+    {% endif %}
+{% endblock edit_dropdown %}

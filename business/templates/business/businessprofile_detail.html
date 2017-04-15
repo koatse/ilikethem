@@ -11,12 +11,11 @@
 	<li> HeadOffice: {{ object.city_headquarter }} </li>
 </ul>
 
-{% if user.is_authenticated and user.pk == object.user.pk %}
-<h4>Make updates</h4>
-<ul>
-	<li><a href="{% url 'business:edit_profile' pk=object.pk %}"> Edit me </a></li>
-	<li><a href="{% url 'business:delete_profile' pk=object.pk %}"> Delete me </a></li>
-</ul>
-{% endif %}
-
 {% endblock content %}
+
+{% block edit_dropdown %}
+    {% if user.is_authenticated and user.pk == object.user.pk %}
+    <li><a href="{% url 'business:edit_profile' pk=object.pk %}">Edit BusinessProfile</a></li>
+    <li><a href="{% url 'business:delete_profile' pk=object.pk %}">Delete BusinessProfile</a></li>
+    {% endif %}
+{% endblock edit_dropdown %}

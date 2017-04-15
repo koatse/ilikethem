@@ -35,52 +35,98 @@
 			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
 		<![endif]-->
 
+<!-- overriding bootstrap default style -->
+<style>
+.navbar-default {
+	background-color: orange;
+}
+</style>
+
 		<title>
 			{% block title %}
 			My Rein Project
 			{% endblock title %}
 		</title>
 
-
-
 		{% block header %}{% endblock header %}
 	</head>
 
 	<body>
-		<h3>Accounts</h3>
-		{% if user.is_authenticated %}
-		<li><a href="{% url 'core:myuserprofile' %}">My UserProfile</a></li>
-		<li><a href="{% url 'business:myprofile' %}">My BusinessProfile</a></li>
-		<li><a href="{% url 'recommend:my' %}">My Recommendation</a></li>
-		<li><a href="{% url 'auth_logout' %}">Logout from {{user}} </a></li>
-		{% else %}
-		<li>
-			<a href="{% url 'auth_login' %}">Login</a>
-		</li>
-		<li>
-			<a href="{% url 'registration_register' %}">Register</a>
-		</li>
-		{% endif %}
+		<!-- Navigation -->
+		<nav class="navbar navbar-default navbar-static-top topnav" role="navigation">
+			<div class="container topnav">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand topnav" href="{% url 'core:userprofile_all' %}">Home</a>
+				</div>
 
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'core:userprofile_all' %}">All UserProfile</a></li>
+								<li><a href="{% url 'business:profile' %}">All BusinessProfile</a></li>
+								<li><a href="{% url 'recommend:all' %}">All Recomendation</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Me<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'core:myuserprofile' %}">My UserProfile</a></li>
+								<li><a href="{% url 'business:myprofile' %}">My BusinessProfile</a></li>
+								<li><a href="{% url 'recommend:my' %}">My Recommendations</a></li>
+								<li role="separator" class="divider"></li>
+								<li><a href="{% url 'core:edit_userprofile' %}">Edit UserProfile</a></li>
+								{% block edit_dropdown %} {% endblock edit_dropdown %}
+								<li role="separator" class="divider"></li>
+								<li><a href="{% url 'business:create_profile' %}">Add BusinessProfile</a></li>
+								<li><a href="{% url 'recommend:create' %}">Add Recomendation</a></li>
+							</ul>
+						</li>
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin only<span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="{% url 'core:userprofile_all' %}">All UserProfile</a></li>
+								<li><a href="{% url 'business:service' %}">All BusinessService</a></li>
+								<li><a href="{% url 'business:profile' %}">All BusinessProfile</a></li>
+								<li><a href="{% url 'experience:all' %}">All Experience</a></li>
+								<li><a href="{% url 'recommend:all' %}">All Recommendation</a></li>
+								<li><a href="{% url 'business:create_service' %}">Create BusinessService</a></li>
+								<li><a href="{% url 'experience:create_reno' %}">Create RenovationExperience</a></li>
+								<li><a href="{% url 'recommend:create2' %}">Create Recommendation2</a></li>
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						{% if user.is_authenticated %}
+						<li><a href="{% url 'auth_logout' %}">Logout {{user}}</a></li>
+						{% else %}
+						<li><a href="{% url 'auth_login' %}">Login</a></li>
+						<li><a href="{% url 'registration_register' %}">Register</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+
+<div>
 		{% block content %}{% endblock content %}
+</div>
 
-		{% block footer %}
-		<h3>Links</h3>
-		<ul>
-			<li><a href="{% url 'core:userprofile_all' %}">All UserProfile</a></li>
-			<li><a href="{% url 'business:service' %}">All BusinessService</a></li>
-			<li><a href="{% url 'business:profile' %}">All BusinessProfile</a></li>
-			<li><a href="{% url 'experience:all' %}">All Experience</a></li>
-			<li><a href="{% url 'recommend:all' %}">All Recommendation</a></li>
-			<li><a href="{% url 'business:create_service' %}">Create BusinessService</a></li>
-			<li><a href="{% url 'experience:create_reno' %}">Create RenovationExperience</a></li>
-			<li><a href="{% url 'recommend:create2' %}">Create Recommendation2</a></li>
-		</ul>
-		{% endblock footer %}
+		{% block footer %} {% endblock footer %}
 
 		<!-- jQuery -->
 		<script src="{% static 'js/jquery.js' %}"></script>
-
 		<!-- Bootstrap Core JavaScript -->
 		<script src="{% static 'js/bootstrap.min.js' %}"></script>
 	</body>
