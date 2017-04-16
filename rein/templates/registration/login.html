@@ -6,4 +6,9 @@
 {% block content %}
 <h1>Login</h1>
 {% include 'rein/bootstrap_form.html'%}
+ <p>
+        <a href="{% url 'password_reset' %}">
+            Forgot your password?
+        </a>
+</p>
 {% endblock content %}

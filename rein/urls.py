@@ -16,6 +16,7 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
 from .backends import MyRegistrationView
 
 urlpatterns = [
@@ -26,6 +27,28 @@ urlpatterns = [
     url(r'^core/', include('core.urls', namespace="core")),
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name="register"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
+
+ # the new password reset URLs
+    url(r'^accounts/password/reset/$', 
+        password_reset,
+        {'template_name':
+        'registration/password_reset_form.html'},
+        name="password_reset"),
+    url(r'^accounts/password/reset/done/$',
+        password_reset_done,
+        {'template_name':
+        'registration/password_reset_done.html'},
+        name="password_reset_done"),
+    url(r'^accounts/password/reset/(?P<uidb64>[0-9A-Za-z]+)-(?P<token>.+)/$', 
+        password_reset_confirm,
+        {'template_name':
+        'registration/password_reset_confirm.html'},
+        name="password_reset_confirm"),
+    url(r'^accounts/password/done/$', 
+        password_reset_complete,
+        {'template_name':
+        'registration/password_reset_complete.html'},
+        name="password_reset_complete"),
 
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),

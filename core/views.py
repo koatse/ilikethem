@@ -62,5 +62,5 @@ def MyUserProfileView(request):
         userprofile = UserProfile.objects.get(user=request.user)
     except:
         return redirect("core:create_userprofile")
-    send_mail('subject', 'body of the message', 'noreply@myrein.com', ['koatse@gmail.com'])
+    #send_mail('subject', 'body of the message', 'noreply@myrein.com', ['koatse@gmail.com'])
     return redirect("core:userprofile_detail", pk=userprofile.pk)
