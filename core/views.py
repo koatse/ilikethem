@@ -11,9 +11,12 @@ from django.core.mail import send_mail
 
 class UserProfileListView(ListView):
     model = UserProfile
+    template_name = "core/list.html"
 
 class UserProfileDetailView(DetailView):
     model = UserProfile
+    template_name = "core/detail.html"
+
     def get_context_data(self, **kwargs):
         context = super(UserProfileDetailView, self).get_context_data(**kwargs)
         context["recommendations"] = Recommendation.objects.filter(ownby=context["object"].pk)
@@ -54,7 +57,7 @@ def EditUserProfile(request):
     else:
         form = form_class(instance=userprofile)
 
-    return render(request, "core/edit_userprofile.html", {'form': form})
+    return render(request, "core/edit.html", {'form': form})
 
 @login_required
 def MyUserProfileView(request):
