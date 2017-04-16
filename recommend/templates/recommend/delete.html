@@ -6,9 +6,9 @@
 {% block content %}
 <h2>Deleting data</h2>
 <p>Are you sure you want to delete {{ object }}?</p>
-<form action="{% url "experience:delete_reno" pk=object.pk %}" method="POST">
+<form action="{% url "recommend:delete" pk=object.pk %}" method="POST">
     {% csrf_token %}
     <input type="submit" value="Yes, delete." />
-    <a href="{% url "experience:all" %}">No, cancel.</a>
+    <a href="{% url "recommend:my" %}">No, cancel.</a>
 </form>
 {% endblock %}
