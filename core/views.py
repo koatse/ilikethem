@@ -7,6 +7,7 @@ from .models import UserProfile
 from .forms import UserProfileForm
 from business.models import BusinessProfile
 from recommend.models import Recommendation
+from django.core.mail import send_mail
 
 class UserProfileListView(ListView):
     model = UserProfile
@@ -61,4 +62,5 @@ def MyUserProfileView(request):
         userprofile = UserProfile.objects.get(user=request.user)
     except:
         return redirect("core:create_userprofile")
+    send_mail('subject', 'body of the message', 'noreply@myrein.com', ['koatse@gmail.com'])
     return redirect("core:userprofile_detail", pk=userprofile.pk)
