@@ -4,9 +4,17 @@
 {% endblock title %}
 
 {% block content %}
+<ul class="list-inline intro-social-buttons">
+	<li>
+		<a href="{% url 'social:begin' 'facebook' %}" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">Facebook login</span></a>
+	</li>
+	<li>
+		<a href="{% url 'social:begin' 'google-oauth2' %}" class="btn btn-default btn-lg"><i class="fa fa-google fa-fw"></i> <span class="network-name">Google login</span></a>
+	</li>
+                        </ul>
 <h1>Login</h1>
 {% include 'rein/bootstrap_form.html'%}
- <p>
+<p>
         <a href="{% url 'password_reset' %}">
             Forgot your password?
         </a>

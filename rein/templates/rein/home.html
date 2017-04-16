@@ -5,18 +5,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="intro-message">
-                        <h1 class="intro-heading"><span>Share My Team</span></h1>
-                        <h3 class="intro-heading"><span>I like them</span></h3>
+                        <h1 class="intro-heading"><span>I like them</span></h1>
+                        <h3 class="intro-heading"><span>who you like?</span></h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
                             <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                                <a href="{% url 'core:userprofile_all' %}" class="btn btn-default btn-lg"><span class="network-name">Community</span></a>
                             </li>
                             <li>
-                                <a href="https://github.com/IronSummitMedia/startbootstrap" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn btn-default btn-lg"><i class="fa fa-linkedin fa-fw"></i> <span class="network-name">Linkedin</span></a>
+                                <a href="{% url 'core:myuserprofile' %}" class="btn btn-default btn-lg"><span class="network-name">Me</span></a>
                             </li>
                         </ul>
                     </div>
