@@ -5,7 +5,7 @@ class RequireUserProfileMixin(object):
         try:
             userprofile = UserProfile.objects.get(user=self.request.user)
         except:
-            return redirect("core:create_userprofile")
+            return redirect("core:create")
         self.kwargs["userprofile"] = userprofile
         return super(RequireUserProfileMixin, self).dispatch(request, *args, **kwargs)
 

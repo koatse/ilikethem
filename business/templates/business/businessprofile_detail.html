@@ -3,7 +3,7 @@
 <h2>BusinessProfileDetail</h2>
 <h3> {{ object.name }}</h3>
 <ul>
-	<li> Owner: <a href="{% url 'core:userprofile_detail' pk=object.ownby.pk %}"> {{ object.ownby }} </a></li>
+	<li> Owner: <a href="{% url 'core:detail' pk=object.ownby.pk %}"> {{ object.ownby }} </a></li>
 	<li> Email: {{ object.email }} </li>
 	<li> Phone: {{ object.phone }} </li>
 	<li> Website: {{ object.website }} </li>

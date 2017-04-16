@@ -31,18 +31,18 @@ def CreateUserProfile(request):
             userprofile.user = request.user
             userprofile.save()
             form.save_m2m()
-            return redirect("core:userprofile_detail", pk=userprofile.pk)
+            return redirect("core:detail", pk=userprofile.pk)
     else:
         form = form_class()
 
-    return render(request, "core/create_userprofile.html", {'form': form})
+    return render(request, "core/create.html", {'form': form})
 
 @login_required
 def EditUserProfile(request):
     try:
         userprofile = UserProfile.objects.get(user=request.user)
     except:
-        return redirect("core:create_userprofile")
+        return redirect("core:create")
 
     form_class = UserProfileForm
 
@@ -50,7 +50,7 @@ def EditUserProfile(request):
         form = form_class(request.POST, instance=userprofile)
         if form.is_valid():
             form.save()
-            return redirect("core:userprofile_detail", pk=userprofile.pk)
+            return redirect("core:detail", pk=userprofile.pk)
     else:
         form = form_class(instance=userprofile)
 
@@ -61,6 +61,6 @@ def MyUserProfileView(request):
     try:
         userprofile = UserProfile.objects.get(user=request.user)
     except:
-        return redirect("core:create_userprofile")
+        return redirect("core:create")
     #send_mail('subject', 'body of the message', 'noreply@myrein.com', ['koatse@gmail.com'])
-    return redirect("core:userprofile_detail", pk=userprofile.pk)
+    return redirect("core:detail", pk=userprofile.pk)

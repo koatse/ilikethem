@@ -3,9 +3,11 @@ from .views import UserProfileListView, UserProfileDetailView
 from .views import CreateUserProfile, EditUserProfile, MyUserProfileView
 
 urlpatterns = [
-    url(r'^$', UserProfileListView.as_view(), name="userprofile_all"),
-    url(r'^detail/(?P<pk>\d+)/', UserProfileDetailView.as_view(), name="userprofile_detail"),
-    url(r'^create/$', CreateUserProfile, name="create_userprofile"),
-    url(r'^edit/$', EditUserProfile, name="edit_userprofile"),
-    url(r'^myuserprofile/$', MyUserProfileView, name="myuserprofile"),
+    url(r'^all/$', UserProfileListView.as_view(), name="all"),
+    url(r'^detail/(?P<pk>\d+)/', UserProfileDetailView.as_view(), name="detail"),
+
+    url(r'^my/$', MyUserProfileView, name="my"),
+    url(r'^create/$', CreateUserProfile, name="create"),
+    url(r'^edit/$', EditUserProfile, name="edit"),
+    #cannot delete 
 ]

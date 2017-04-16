@@ -5,7 +5,7 @@
 	{% for recommendation in object_list %}
 	<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation.name }} </a> 
 		recommeneded by 
-		<a href="{% url 'core:userprofile_detail' pk=recommendation.ownby.pk %}"> {{ recommendation.ownby }} </a>
+		<a href="{% url 'core:detail' pk=recommendation.ownby.pk %}"> {{ recommendation.ownby }} </a>
 	</li>
 	{% endfor %}
 </ul>
