@@ -13,7 +13,10 @@ logger = logging.getLogger("recommend")
 class RecommendationListView(ListView):
     model = Recommendation
 
-class MyRecommendationListView(ListView):
+class RecommendationDetailView(DetailView):
+    model = Recommendation
+
+class MyRecommendationListView(LoginRequiredMixin, ListView):
     model = Recommendation
 
     def get_queryset(self):
@@ -22,9 +25,6 @@ class MyRecommendationListView(ListView):
         else:
             return Recommendation.objects.all()
 
-class RecommendationDetailView(DetailView):
-    model = Recommendation
-    
 @login_required
 def CreateRecommendation(request):
     try:

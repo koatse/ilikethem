@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect, Http404
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from core.models import UserProfile
@@ -17,7 +18,7 @@ class BusinessServiceDetailView(DetailView):
 class BusinessProfileListView(ListView):
     model = BusinessProfile
 
-class MyBusinessProfileListView(ListView):
+class MyBusinessProfileListView(LoginRequiredMixin, ListView):
     model = BusinessProfile
 
     def get_queryset(self):
