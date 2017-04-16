@@ -111,6 +111,7 @@
 						{% else %}
 						<li><a href="{% url 'auth_login' %}">Login</a></li>
 						<li><a href="{% url 'social:begin' 'facebook' %}">Login with Facebook</a></li>
+						<li><a href="{% url 'social:begin' 'google-oauth2' %}">Login with Google</a></li>
 						<li><a href="{% url 'registration_register' %}">Register</a></li>
 						{% endif %}
 					</ul>
