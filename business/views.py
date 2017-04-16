@@ -14,9 +14,6 @@ from .forms import BusinessProfileForm
 class BusinessServiceListView(ListView):
     model = BusinessService
 
-class BusinessServiceDetailView(DetailView):
-    model = BusinessService
-
 class BusinessProfileListView(ListView):
     model = BusinessProfile
 
@@ -43,7 +40,7 @@ class CreateBusinessProfileView(LoginRequiredMixin, RequireUserProfileMixin, Cre
         business_profile.ownby = self.kwargs.get("userprofile")
         business_profile.save()
         form.save_m2m()
-        return redirect("business:myprofile")
+        return redirect("business:my")
 
 class UpdateBusinessProfileView(LoginRequiredMixin, UpdateView):
     model = BusinessProfile
@@ -52,7 +49,7 @@ class UpdateBusinessProfileView(LoginRequiredMixin, UpdateView):
 
     def form_valid(self, form):
         form.save()
-        return redirect("business:myprofile")
+        return redirect("business:my")
 
 class DeleteBusinessProfileView(LoginRequiredMixin, DeleteView):
     model = BusinessProfile
@@ -64,4 +61,4 @@ class DeleteBusinessProfileView(LoginRequiredMixin, DeleteView):
             businessprofile.delete()
         except:
             pass
-        return redirect("business:myprofile")
+        return redirect("business:my")

@@ -73,7 +73,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Community<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="{% url 'core:userprofile_all' %}">All UserProfile</a></li>
-								<li><a href="{% url 'business:profile' %}">All BusinessProfile</a></li>
+								<li><a href="{% url 'business:profile_all' %}">All BusinessProfile</a></li>
 								<li><a href="{% url 'recommend:all' %}">All Recomendation</a></li>
 							</ul>
 						</li>
@@ -81,7 +81,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Me<span class="caret"></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="{% url 'core:myuserprofile' %}">My UserProfile</a></li>
-								<li><a href="{% url 'business:myprofile' %}">My BusinessProfile</a></li>
+								<li><a href="{% url 'business:my' %}">My BusinessProfile</a></li>
 								<li><a href="{% url 'recommend:my' %}">My Recommendations</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="{% url 'core:edit_userprofile' %}">Edit UserProfile</a></li>
@@ -96,13 +96,8 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin only<span class="caret"></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="{% url 'core:userprofile_all' %}">All UserProfile</a></li>
-								<li><a href="{% url 'business:service' %}">All BusinessService</a></li>
-								<li><a href="{% url 'business:profile' %}">All BusinessProfile</a></li>
+								<li><a href="{% url 'business:service_all' %}">All BusinessService</a></li>
 								<li><a href="{% url 'experience:all' %}">All Experience</a></li>
-								<li><a href="{% url 'recommend:all' %}">All Recommendation</a></li>
-								<li><a href="{% url 'experience:create_reno' %}">Create RenovationExperience</a></li>
-								<li><a href="{% url 'recommend:create' %}">Create Recommendation</a></li>
 							</ul>
 						</li>
 					</ul>

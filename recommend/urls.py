@@ -1,6 +1,6 @@
 from django.conf.urls import include, url
-from .views import RecommendationListView, MyRecommendationListView, RecommendationDetailView
-from .views import CreateRecommendationView, UpdateRecommendationView, DeleteRecommendationView
+from .views import RecommendationListView, RecommendationDetailView
+from .views import MyRecommendationListView, CreateRecommendationView, UpdateRecommendationView, DeleteRecommendationView
 
 urlpatterns = [
     url(r'^all/$', RecommendationListView.as_view(), name="all"),
