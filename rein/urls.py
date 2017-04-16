@@ -18,6 +18,7 @@ from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from django.contrib.auth.views import (password_reset, password_reset_done, password_reset_confirm, password_reset_complete)
 from .backends import MyRegistrationView
+from .views import HomeView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,7 +29,7 @@ urlpatterns = [
     url(r'^accounts/register/$', MyRegistrationView.as_view(), name="register"),
     url(r'^accounts/', include('registration.backends.simple.urls')),
 
- # the new password reset URLs
+    #password reset
     url(r'^accounts/password/reset/$', 
         password_reset,
         {'template_name':
@@ -50,10 +51,11 @@ urlpatterns = [
         'registration/password_reset_complete.html'},
         name="password_reset_complete"),
 
+    #Login/Logout
     url(r'^login/$', auth_views.login, name='login'),
     url(r'^logout/$', auth_views.logout, name='logout'),
     url(r'^oauth/', include('social_django.urls', namespace='social')),
-
-    url(r'^$', include('core.urls', namespace="core")),
+    url(r'^$', HomeView, name="home"),
+    #url(r'^$', include('core.urls', namespace="core")),
 
 ]
