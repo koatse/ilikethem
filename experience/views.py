@@ -1,4 +1,3 @@
-from django.shortcuts import render, reverse
 from django.views.generic import TemplateView
 from .models import RenovationExperience, TenantExperience, FinancingExperience, TaxExperience
 

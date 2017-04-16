@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView, UpdateView, DeleteView
-from core.models import UserProfile
 from core.mixin import RequireUserProfileMixin
 from .models import Recommendation
 from .forms import RecommendationForm
