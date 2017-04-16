@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -15,7 +14,7 @@ class RecommendationListView(ListView):
 class RecommendationDetailView(DetailView):
     model = Recommendation
 
-class MyRecommendationListView(LoginRequiredMixin, ListView):
+class MyRecommendationListView(RequireUserProfileMixin, ListView):
     model = Recommendation
 
     def get_queryset(self):
@@ -24,7 +23,7 @@ class MyRecommendationListView(LoginRequiredMixin, ListView):
         else:
             return Recommendation.objects.all()
 
-class CreateRecommendationView(LoginRequiredMixin, RequireUserProfileMixin, CreateView):
+class CreateRecommendationView(RequireUserProfileMixin, CreateView):
     model = Recommendation
     form_class = RecommendationForm
     template_name = "recommend/create_recommendation.html"
@@ -37,7 +36,7 @@ class CreateRecommendationView(LoginRequiredMixin, RequireUserProfileMixin, Crea
         form.save_m2m()
         return redirect("recommend:my")
 
-class UpdateRecommendationView(LoginRequiredMixin, UpdateView):
+class UpdateRecommendationView(RequireUserProfileMixin, UpdateView):
     model = Recommendation
     form_class = RecommendationForm
     template_name = "recommend/edit_recommendation.html"
@@ -46,7 +45,7 @@ class UpdateRecommendationView(LoginRequiredMixin, UpdateView):
         form.save()
         return redirect("recommend:my")
 
-class DeleteRecommendationView(LoginRequiredMixin, DeleteView):
+class DeleteRecommendationView(RequireUserProfileMixin, DeleteView):
     model = Recommendation
     template_name = "recommend/delete.html"
 

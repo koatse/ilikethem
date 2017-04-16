@@ -1,5 +1,4 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic.list import ListView
 from django.views.generic import DetailView
 from django.views.generic import CreateView, UpdateView, DeleteView
@@ -16,16 +15,13 @@ class BusinessProfileListView(ListView):
 class BusinessProfileDetailView(DetailView):
     model = BusinessProfile
 
-class MyBusinessProfileListView(LoginRequiredMixin, ListView):
+class MyBusinessProfileListView(RequireUserProfileMixin, ListView):
     model = BusinessProfile
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return BusinessProfile.objects.filter(user=self.request.user)
-        else:
-            return BusinessProfile.objects.all()
+        return BusinessProfile.objects.filter(user=self.request.user)
 
-class CreateBusinessProfileView(LoginRequiredMixin, RequireUserProfileMixin, CreateView):
+class CreateBusinessProfileView(RequireUserProfileMixin, CreateView):
     model = BusinessProfile
     form_class = BusinessProfileForm
     template_name = "business/create_business_profile.html"
@@ -38,7 +34,7 @@ class CreateBusinessProfileView(LoginRequiredMixin, RequireUserProfileMixin, Cre
         form.save_m2m()
         return redirect("business:my")
 
-class UpdateBusinessProfileView(LoginRequiredMixin, UpdateView):
+class UpdateBusinessProfileView(RequireUserProfileMixin, UpdateView):
     model = BusinessProfile
     form_class = BusinessProfileForm
     template_name = "business/edit_business_profile.html"
@@ -47,7 +43,7 @@ class UpdateBusinessProfileView(LoginRequiredMixin, UpdateView):
         form.save()
         return redirect("business:my")
 
-class DeleteBusinessProfileView(LoginRequiredMixin, DeleteView):
+class DeleteBusinessProfileView(RequireUserProfileMixin, DeleteView):
     model = BusinessProfile
     template_name = "business/delete.html"
 
