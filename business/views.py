@@ -8,15 +8,19 @@ from .forms import BusinessProfileForm
 
 class BusinessServiceListView(ListView):
     model = BusinessService
+    template_name = "business/businessservice_list.html"
 
 class BusinessProfileListView(ListView):
     model = BusinessProfile
+    template_name = "business/businessprofile_list.html"
 
 class BusinessProfileDetailView(DetailView):
     model = BusinessProfile
+    template_name = "business/businessprofile_detail.html"
 
 class MyBusinessProfileListView(RequireUserProfileMixin, ListView):
     model = BusinessProfile
+    template_name = "business/businessprofile_list.html"
 
     def get_queryset(self):
         return BusinessProfile.objects.filter(user=self.request.user)
@@ -24,7 +28,7 @@ class MyBusinessProfileListView(RequireUserProfileMixin, ListView):
 class CreateBusinessProfileView(RequireUserProfileMixin, CreateView):
     model = BusinessProfile
     form_class = BusinessProfileForm
-    template_name = "business/create_business_profile.html"
+    template_name = "business/businessprofile_create.html"
 
     def form_valid(self, form):
         business_profile = form.save(commit=False)
@@ -37,7 +41,7 @@ class CreateBusinessProfileView(RequireUserProfileMixin, CreateView):
 class UpdateBusinessProfileView(RequireUserProfileMixin, UpdateView):
     model = BusinessProfile
     form_class = BusinessProfileForm
-    template_name = "business/edit_business_profile.html"
+    template_name = "business/businessprofile_edit.html"
 
     def form_valid(self, form):
         form.save()
@@ -45,7 +49,7 @@ class UpdateBusinessProfileView(RequireUserProfileMixin, UpdateView):
 
 class DeleteBusinessProfileView(RequireUserProfileMixin, DeleteView):
     model = BusinessProfile
-    template_name = "business/delete.html"
+    template_name = "business/businessprofile_delete.html"
 
     def delete(self, request, *args, **kwargs):
         try:

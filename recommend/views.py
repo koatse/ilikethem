@@ -10,23 +10,23 @@ logger = logging.getLogger("recommend")
 
 class RecommendationListView(ListView):
     model = Recommendation
+    template_name = "recommend/list.html"
 
 class RecommendationDetailView(DetailView):
     model = Recommendation
+    template_name = "recommend/detail.html"
 
 class MyRecommendationListView(RequireUserProfileMixin, ListView):
     model = Recommendation
+    template_name = "recommend/list.html"
 
     def get_queryset(self):
-        if self.request.user.is_authenticated:
-            return Recommendation.objects.filter(user=self.request.user)
-        else:
-            return Recommendation.objects.all()
+        return Recommendation.objects.filter(user=self.request.user)
 
 class CreateRecommendationView(RequireUserProfileMixin, CreateView):
     model = Recommendation
     form_class = RecommendationForm
-    template_name = "recommend/create_recommendation.html"
+    template_name = "recommend/create.html"
 
     def form_valid(self, form):
         recommendation = form.save(commit=False)
@@ -39,7 +39,7 @@ class CreateRecommendationView(RequireUserProfileMixin, CreateView):
 class UpdateRecommendationView(RequireUserProfileMixin, UpdateView):
     model = Recommendation
     form_class = RecommendationForm
-    template_name = "recommend/edit_recommendation.html"
+    template_name = "recommend/edit.html"
 
     def form_valid(self, form):
         form.save()
