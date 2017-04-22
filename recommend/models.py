@@ -57,6 +57,7 @@ class Recommendation(models.Model):
      on_active_contract = models.BooleanField(default = False, verbose_name="I have a ongoing contract with this business")
      is_repeated_customer = models.BooleanField(default = False, verbose_name="I am a repeated customer of this business")
      main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5, verbose_name="Why I like them:")
+     story = models.TextField(max_length=1000, blank = True, verbose_name="My happy story working with them:", default="")
 
      def __str__(self):
          return self.name + " (" + self.service.name + ")" + " - " + self.get_main_reason_to_reuse_display()
