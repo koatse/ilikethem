@@ -12,7 +12,8 @@ SATISFACTION_CHOICES = (
          (3, "PERFECT"),
 )
 SPENDING_CHOICES = (
-        (0, "$0 - $99"),
+        (-1, "Not Applicable"),
+        (0, "$1 - $99"),
         (1, "$100 - $199"),
         (2, "$200 - $499"),
         (3, "$500 - $999"),
@@ -43,19 +44,19 @@ REUSE_REASON_CHOICES = (
 class Recommendation(models.Model):
      user = models.ForeignKey(User, blank=True, null=True)
      ownby = models.ForeignKey(UserProfile)
-     name = models.CharField(max_length=50)
+     name = models.CharField(max_length=50, verbose_name="Business Owner/Company name")
      email = models.EmailField(max_length=50)
      phone = PhoneNumberField(blank = True)
      website = models.URLField(blank = True)
      service  = models.ForeignKey(BusinessService)
-     city_serviced = models.ManyToManyField(City)
+     city_serviced = models.ManyToManyField(City, verbose_name="City where they provided service to me")
 
-     satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0)
-     total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0)
-     pricing = models.IntegerField(choices=PRICING_CHOICES, default=1)
-     on_active_contract = models.BooleanField(default = False)
-     is_repeated_customer = models.BooleanField(default = False)
-     main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5)
+     satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0, verbose_name="They make me feel")
+     total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0, verbose_name="Total purchase so far", help_text="Select N/A if you don't directly pay (e.g. buyer realtor)")
+     pricing = models.IntegerField(choices=PRICING_CHOICES, default=1, verbose_name="Price point")
+     on_active_contract = models.BooleanField(default = False, verbose_name="I have a ongoing contract with this business")
+     is_repeated_customer = models.BooleanField(default = False, verbose_name="I am a repeated customer of this business")
+     main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5, verbose_name="Why I like them:")
 
      def __str__(self):
          return self.name + " (" + self.service.name + ")" + " - " + self.get_main_reason_to_reuse_display()

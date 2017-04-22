@@ -23,6 +23,12 @@ class UserProfileDetailView(DetailView):
         context["business_profiles"] = BusinessProfile.objects.filter(ownby=context["object"].pk)
         return context
 
+def add_placeholders(form):
+    form.fields['phone'].widget.attrs['placeholder'] = "optional"
+    form.fields['website'].widget.attrs['placeholder'] = "optional"
+    form.fields['intro'].widget.attrs['placeholder'] = "Hi there! I am excited to share with you the team that helps me acoomplish my real estate goals. Check out my experience below to see if you are interested in achieving something similar."
+    return form
+
 @login_required
 def CreateUserProfile(request):
     form_class = UserProfileForm
@@ -38,6 +44,7 @@ def CreateUserProfile(request):
     else:
         form = form_class()
 
+    form = add_placeholders(form)
     return render(request, "core/create.html", {'form': form})
 
 @login_required
@@ -56,6 +63,7 @@ def EditUserProfile(request):
             return redirect("core:detail", pk=userprofile.pk)
     else:
         form = form_class(instance=userprofile)
+    form = add_placeholders(form)
 
     return render(request, "core/edit.html", {'form': form})
 

@@ -13,12 +13,12 @@ class BusinessService(models.Model):
 class BusinessProfile(models.Model):
     user = models.ForeignKey(User, blank=True, null=True)
     ownby = models.ForeignKey(UserProfile)
-    name = models.CharField(max_length=50)
-    email = models.EmailField(max_length=50)
-    phone = PhoneNumberField()
+    name = models.CharField(max_length=50, verbose_name="Your name or your company name")
+    email = models.EmailField(max_length=50, verbose_name="Business email")
+    phone = PhoneNumberField(verbose_name="Business phone")
     website = models.URLField(blank = True)
-    service  = models.ManyToManyField(BusinessService)
-    city_headquarter = models.ForeignKey(City)
+    service  = models.ManyToManyField(BusinessService, verbose_name="Business services provided: (multi-select)")
+    city_headquarter = models.ForeignKey(City, verbose_name="City of main office")
 
     def __str__(self):
         return self.name
