@@ -14,6 +14,10 @@ class BusinessProfileListView(ListView):
     model = BusinessProfile
     template_name = "business/businessprofile_list.html"
 
+    def get_queryset(self):
+        qs = super(BusinessProfileListView, self).get_queryset().order_by("user")
+        return qs
+
 class BusinessProfileDetailView(DetailView):
     model = BusinessProfile
     template_name = "business/businessprofile_detail.html"

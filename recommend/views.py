@@ -12,6 +12,10 @@ class RecommendationListView(ListView):
     model = Recommendation
     template_name = "recommend/list.html"
 
+    def get_queryset(self):
+        qs = super(RecommendationListView, self).get_queryset().order_by("name")
+        return qs
+
 class RecommendationDetailView(DetailView):
     model = Recommendation
     template_name = "recommend/detail.html"

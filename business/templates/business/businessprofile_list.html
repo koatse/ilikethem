@@ -1,11 +1,24 @@
 {% extends 'rein/base.html' %}
 {% block content %}
-<h2>BusinessProfile</h2>
+{% if user.is_authenticated and userprofile.user.pk == user.pk %}
+<a href="{% url 'business:create' %}"> Add a business</a> 
+{% endif %}
+<h2>BusinessProfiles</h2>
 {% for business_profile in object_list %}
-<h3> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}"> {{ business_profile.name }} </a></h3>
+<a href="{% url 'business:profile_detail' pk=business_profile.pk %}"> {{ business_profile.name }} </a>
 <ul>
 	<li> Owner: <a href="{% url 'core:detail' pk=business_profile.ownby.pk %}"> {{ business_profile.ownby }} </a></li>
 	<li> Services: {{ business_profile.service.all | join:", " }} </li>
+        {% if business_profile.email %}
+	<li> Email: {{ business_profile.email }} </li>
+        {% endif %}
+        {% if business_profile.phone %}
+	<li> Phone: {{ business_profile.phone }} </li>
+        {% endif %}
+        {% if business_profile.website %}
+	<li> Website: {{ business_profile.website }} </li>
+        {% endif %}
+	<li> Head Office City: {{ business_profile.city_headquarter }} </li>
 </ul>
 {% endfor %}
 {% endblock content %}

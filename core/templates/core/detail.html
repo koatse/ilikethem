@@ -1,9 +1,14 @@
 {% extends 'rein/base.html' %}
 {% block content %}
 {% if user.is_authenticated and object.user.pk == user.pk %}
-<h2>MyProfileDetail</h2>
+<h2>MyProfile</h2>
+<ul>
+<li><a href="{% url 'core:edit' %}">Edit profile</a> </li>
+<li><a href="{% url 'business:create' %}"> Add a business</a> </li>
+<li><a href="{% url 'recommend:create' %}"> Add a recommendation</a> </li>
+</ul>
 {% else %}
-<h2>UserProfileDetail</h2>
+<h2>UserProfile</h2>
 {% endif %}
 <h3> {{ object.fullname }}</h3>
 <ul>

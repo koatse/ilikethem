@@ -11,3 +11,8 @@ class RequireUserProfileMixin(LoginRequiredMixin):
         self.kwargs["userprofile"] = userprofile
         return super(RequireUserProfileMixin, self).dispatch(request, *args, **kwargs)
 
+    def get_context_data(self, **kwargs):
+        context = super(RequireUserProfileMixin, self).get_context_data(**kwargs)
+        context["userprofile"] = self.kwargs["userprofile"]
+        return context
+

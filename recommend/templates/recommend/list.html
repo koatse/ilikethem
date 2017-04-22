@@ -1,6 +1,9 @@
 {% extends 'rein/base.html' %}
 {% block content %}
-<h2>Recommendation</h2>
+{% if user.is_authenticated and userprofile.user.pk == user.pk %}
+<a href="{% url 'recommend:create' %}"> Add a recommendation</a> 
+{% endif %}
+<h2>Recommendations</h2>
 <ul>
 	{% for recommendation in object_list %}
 	<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation.name }} </a> 

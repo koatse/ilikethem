@@ -72,25 +72,25 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Browse<span class="caret"></span></a>
 							<ul class="dropdown-menu">
+								<li><a href="{% url 'recommend:all' %}">All Recomendation</a></li>
 								<li><a href="{% url 'core:all' %}">All UserProfile</a></li>
 								<li><a href="{% url 'business:profile_all' %}">All BusinessProfile</a></li>
-								<li><a href="{% url 'recommend:all' %}">All Recomendation</a></li>
 							</ul>
 						</li>
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Share<span class="caret"></span></a>
 							<ul class="dropdown-menu">
+								<li><a href="{% url 'recommend:my' %}">My Recommendations</a></li>
 								<li><a href="{% url 'core:my' %}">My UserProfile</a></li>
 								<li><a href="{% url 'business:my' %}">My BusinessProfile</a></li>
-								<li><a href="{% url 'recommend:my' %}">My Recommendations</a></li>
 								<li role="separator" class="divider"></li>
 								<li><a href="{% url 'core:edit' %}">Edit UserProfile</a></li>
 								<!-- we can't directly place the block here since base.html lacks the recommendation object context -->
 								{% block edit_dropdown %}
 								{% endblock edit_dropdown %}
 								<li role="separator" class="divider"></li>
-								<li><a href="{% url 'business:create' %}">Add BusinessProfile</a></li>
 								<li><a href="{% url 'recommend:create' %}">Add Recomendation</a></li>
+								<li><a href="{% url 'business:create' %}">Add BusinessProfile</a></li>
 							</ul>
 						</li>
 						<a class="navbar-brand topnav" href="{% url 'about' %}">About</a>
