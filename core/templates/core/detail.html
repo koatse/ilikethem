@@ -9,36 +9,84 @@
 <ul>
 	<li> Basic Info:
 	<ul>
-		<li> Phone: {{ object.phone }} </li>
+                {% if object.email %}
 		<li> Email: {{ object.email }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Email: Not added yet</li>
+                {% endif %}
+                {% if object.phone %}
 		<li> Phone: {{ object.phone }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Phone: Not added yet</li>
+                {% endif %}
+                {% if object.website %}
 		<li> Website: {{ object.website }} </li>
-		<li> Address: {{ object.city }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Website: Not added yet</li>
+                {% endif %}
+		<li> City: {{ object.city }} </li>
+                {% if object.intro %}
 		<li> Self Introduction: {{ object.intro }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Self Introduction: Not added yet</li>
+                {% endif %}
 	</ul>
 
 	<li> Investment Profile:
 	<ul>
 		<li> Primary Role: {{ object.role }} </li>
+                {% if object.property_type.all %}
 		<li> Invested Property Types: {{ object.property_type.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Invested Property Types: Not added yet</li>
+                {% endif %}
+                {% if object.city_experience.all %}
 		<li> Invested Cities: {{ object.city_experience.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Invested Cities: Not added yet</li>
+                {% endif %}
+                {% if object.renovation_experience.all %}
 		<li> Renovation Experience: {{ object.renovation_experience.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Renovation Experience: Not added yet</li>
+                {% endif %}
+                {% if object.tenant_experience.all %}
 		<li> Tenant Experience: {{ object.tenant_experience.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Tenant Experience: Not added yet</li>
+                {% endif %}
+                {% if object.financing_experience.all %}
 		<li> Financing Experience: {{ object.financing_experience.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Financing Experience: Not added yet</li>
+                {% endif %}
+                {% if object.tax_experience.all %}
 		<li> Tax Strategies Experience: {{ object.tax_experience.all | join:", " }} </li>
+                {% elif user.is_authenticated and object.user.pk == user.pk %}
+		<li> Tax Strategies Experience: not added yet</li>
+                {% endif %}
 	</ul>
 
+        {% if recommendations %}
 	<li> Recommended Contacts: </li>
 	<ul>
 		{% for recommendation in recommendations %}
 		<li> <a href="{% url 'recommend:detail' pk=recommendation.pk %}">{{ recommendation }} </a> </li>
 		{% endfor %}
 	</ul>
+        {% elif user.is_authenticated and object.user.pk == user.pk %}
+	<li> Recommended Contacts: Not added yet</li>
+        {% endif %}
+
+        {% if business_profiles %}
 	<li> Owned Businesses: </li>
 	<ul>
 		{% for business_profile in business_profiles %}
 		<li> <a href="{% url 'business:profile_detail' pk=business_profile.pk %}">{{ business_profile }} </a> </li>
 		{% endfor %}
 	</ul>
+        {% elif user.is_authenticated and object.user.pk == user.pk %}
+	<li> Owned Businesses: Not added yet</li>
+        {% endif %}
 </ul>
 {% endblock content %}
