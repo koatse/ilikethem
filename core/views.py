@@ -13,6 +13,10 @@ class UserProfileListView(ListView):
     model = UserProfile
     template_name = "core/list.html"
 
+    def get_queryset(self):
+        qs = super(UserProfileListView, self).get_queryset().order_by("fullname")
+        return qs
+
 class UserProfileDetailView(DetailView):
     model = UserProfile
     template_name = "core/detail.html"
