@@ -33,12 +33,15 @@ PRICING_CHOICES = (
         (2, "Premium"),
 )
 REUSE_REASON_CHOICES = (
-        (0, "LowPrice"),
+        (0, "Good price"),
         (1, "Expertise"),
-        (2, "CustomerService"),
-        (3, "Availability"),
-        (4, "Workmanship"),
-        (5, "Satisfied"),
+        (2, "Courteous customer service"),
+        (3, "Resonsiveness"),
+        (4, "Quality work"),
+        (5, "Availiabity"),
+        (6, "Stress-free experience"),
+        (7, "Understanding my need"),
+        (8, "Clarity of communiation"),
 )
 
 class Recommendation(models.Model):
@@ -52,13 +55,25 @@ class Recommendation(models.Model):
      service  = models.ForeignKey(BusinessService)
      #should i make this checkbox ?
      city_serviced = models.ManyToManyField(City, verbose_name="Cities where they provided service to me")
+     #satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0, verbose_name="They make me feel")
+     #total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0, verbose_name="Total purchase so far", help_text="Select N/A if you don't directly pay (e.g. buyer realtor)")
+     #pricing = models.IntegerField(choices=PRICING_CHOICES, default=1, verbose_name="Price point")
 
-     satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0, verbose_name="They make me feel")
-     total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0, verbose_name="Total purchase so far", help_text="Select N/A if you don't directly pay (e.g. buyer realtor)")
-     pricing = models.IntegerField(choices=PRICING_CHOICES, default=1, verbose_name="Price point")
-     on_active_contract = models.BooleanField(default = False, verbose_name="I have a ongoing contract with this business")
-     is_repeated_customer = models.BooleanField(default = False, verbose_name="I am a repeated customer of this business")
-     main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5, verbose_name="Why I like them:")
+     on_active_contract = models.BooleanField(default = False, verbose_name="I am an ongoing customer")
+     is_repeated_customer = models.BooleanField(default = False, verbose_name="I have been a repeated custom for/over many years")
+
+     is_open = models.BooleanField(default = False, verbose_name="I am also a customer of this business's competitor")
+     is_selective = models.BooleanField(default = False, verbose_name="I have done extensive research on alternatives")
+     is_chosen = models.BooleanField(default = False, verbose_name="I have interviewed alternatives before selecting them")
+     is_replacement = models.BooleanField(default = False, verbose_name="This replaces my similar contact from before")
+
+     is_referral = models.BooleanField(default = False, verbose_name="I learned about this contact from referral")
+     is_network = models.BooleanField(default = False, verbose_name="I learned about this contact from real estate networking")
+     is_friend = models.BooleanField(default = False, verbose_name="I learned about this contact from family/friends")
+     is_shared = models.BooleanField(default = False, verbose_name="I have already referred this business to many others and they like them too")
+
+
+     main_reason_to_reuse = models.IntegerField(choices=REUSE_REASON_CHOICES, default = 5, verbose_name="I like them primarily for:")
      story = models.TextField(max_length=1000, blank = True, verbose_name="My happy story working with them:", default="")
 
      def __str__(self):

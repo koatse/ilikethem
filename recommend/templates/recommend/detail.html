@@ -1,19 +1,40 @@
 {% extends 'rein/base.html' %}
 {% block content %}
-<h2>RecommendationDetail</h2>
-<h3> {{ object.name }}</h3>
+<h2> {{ object.name }}, Recommended by <a href="{% url 'core:detail' pk=object.ownby.pk %}"> {{ object.ownby }} </a></h2>
 <ul>
-	<li> Recommended by:  <a href="{% url 'core:detail' pk=object.ownby.pk %}"> {{ object.ownby }} </a></li>
 	<li> Email: {{ object.email }} </li>
 	<li> Phone: {{ object.phone }} </li>
 	<li> Website: {{ object.website }} </li>
 	<li> Service: {{ object.service }} </li>
-	<li> City Serviced: {{ object.city_serviced.all | join:", " }} </li>
+	<li> Cities Serviced: {{ object.city_serviced.all | join:", " }} </li>
+
+        <li> Long-term relationship:</li>
+        <ul>
+                <li> I am an ongoing customer: {{ object.on_active_contract }} </li>
+                <li> I have been a repeated custom for/over many years: {{ object.is_repeated_customer }} </li>
+        </ul>
+
+        <li> My alternatives:</li>
+        <ul>
+                <li> I am also a customer of this business's competitor: {{ object.is_open }} </li>
+                <li> I have done extensive research on alternatives: {{ object.is_selective }} </li>
+                <li> I have interviewed alternatives before selecting them: {{ object.is_chosen }} </li>
+                <li> This replaces my similar contact from before: {{ object.is_replacement }} </li>
+        </ul>
+
+        <li> Sharing:</li>
+        <ul>
+                <li> I learned about this contact from referral: {{ object.is_referral }} </li>
+                <li> I learned about this contact from real estate networking: {{ object.is_network }} </li>
+                <li> I learned about this contact from family/friends: {{ object.is_friend }} </li>
+                <li> I have already referred this business to many others and they like them too: {{ object.is_shared }} </li>
+        </ul>
+
+<!--
 	<li> Satisfaction: {{ object.get_satisfaction_display }} </li>
 	<li> Total Money Spent: {{ object.get_total_money_spent_display }} </li>
 	<li> Pricing: {{ object.get_pricing_display }} </li>
-	<li> On Active Contract: {{ object.on_active_contract }} </li>
-	<li> Is Repeated Customer: {{ object.is_repeated_customer }} </li>
+-->
 </ul>
 
 {% endblock content %}
