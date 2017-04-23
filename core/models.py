@@ -7,11 +7,17 @@ from experience.models import RenovationExperience, TenantExperience, FinancingE
 class PropertyType(models.Model):
     name = models.CharField(max_length=50)
 
+    class Meta:
+        ordering = ["name"]
+
     def __str__(self):
         return self.name
 
 class Role(models.Model):
     name = models.CharField(max_length=50)
+
+    class Meta:
+        ordering = ["name"]
 
     def __str__(self):
         return self.name
@@ -26,12 +32,12 @@ class UserProfile(models.Model):
     role = models.ForeignKey(Role, verbose_name="Primary role in real estate")
     intro = models.TextField(max_length=200, blank = True, verbose_name="Self introduction")
 
-    property_type = models.ManyToManyField(PropertyType, blank = True, verbose_name="I have invested in: (multi-select)")
-    renovation_experience = models.ManyToManyField(RenovationExperience, blank = True, verbose_name="I have done these renovations: (multi-select)")
-    tenant_experience = models.ManyToManyField(TenantExperience, blank = True, verbose_name="I have dealt with tenants for: (multi-select)")
-    financing_experience = models.ManyToManyField(FinancingExperience, blank = True, verbose_name="I have used following fincancing strateiges: (multi-select)")
-    tax_experience = models.ManyToManyField(TaxExperience, blank = True, verbose_name="I have used following tax strategies: (multi-select)")
-    city_experience = models.ManyToManyField(City, blank = True, related_name="city_experience", verbose_name="I have invested in: (multi-select)")
+    property_type = models.ManyToManyField(PropertyType, blank = True)
+    renovation_experience = models.ManyToManyField(RenovationExperience, blank = True)
+    tenant_experience = models.ManyToManyField(TenantExperience, blank = True)
+    financing_experience = models.ManyToManyField(FinancingExperience, blank = True)
+    tax_experience = models.ManyToManyField(TaxExperience, blank = True)
+    city_experience = models.ManyToManyField(City, blank = True, related_name="city_experience")
 
     def __str__(self):
         return self.fullname + " (" + self.role.name + ")"
