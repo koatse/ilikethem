@@ -20,7 +20,8 @@ class BusinessProfile(models.Model):
     email = models.EmailField(max_length=50, verbose_name="Business email")
     phone = PhoneNumberField(verbose_name="Business phone")
     website = models.URLField(blank = True)
-    service  = models.ManyToManyField(BusinessService, verbose_name="Business services provided: (multi-select)")
+    service  = models.ManyToManyField(BusinessService)
+
     city_headquarter = models.ForeignKey(City, verbose_name="City of main office")
 
     def __str__(self):

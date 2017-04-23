@@ -48,8 +48,10 @@ class Recommendation(models.Model):
      email = models.EmailField(max_length=50)
      phone = PhoneNumberField(blank = True)
      website = models.URLField(blank = True)
+     #should i make this many to many/checkbox ?
      service  = models.ForeignKey(BusinessService)
-     city_serviced = models.ManyToManyField(City, verbose_name="City where they provided service to me")
+     #should i make this checkbox ?
+     city_serviced = models.ManyToManyField(City, verbose_name="Cities where they provided service to me")
 
      satisfaction = models.IntegerField(choices=SATISFACTION_CHOICES, default=0, verbose_name="They make me feel")
      total_money_spent = models.IntegerField(choices=SPENDING_CHOICES, default=0, verbose_name="Total purchase so far", help_text="Select N/A if you don't directly pay (e.g. buyer realtor)")
